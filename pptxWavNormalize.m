@@ -6,7 +6,7 @@
 % --- HOW TO USE ---                                                      %
 % 1. Put .pptx file to the current directory                              %
 % 2. Type "pptxWavNormalize" to MATLAB command window                     %
-% 3. Type .ppt file name                                                  %
+% 3. Type .pptx file name                                                  %
 % 4. Type a normalization value between 0 and 1 (0.95 is preferred)       %
 % 5. Normalized .pptx file is generated in the same directory             %
 % 6. Enjoy your presentation!                                             %
@@ -18,7 +18,7 @@
 clear;
 close all;
 
-% Read ppt file and set normalization value
+% Read pptx file and set normalization value
 dir = input('Enter name of .pptx file: ', 's');
 if contains(dir, '.pptx')
     dir = strrep(dir, '.pptx', '');
@@ -29,7 +29,7 @@ if normCoef < 0 || normCoef > 1
 end
 fprintf('Processing...\n');
 
-% Unzip ppt file and find audio files
+% Unzip pptx file and find audio files
 zipName = sprintf('%s.pptx', dir);
 inFileNames = unzip(zipName, dir);
 ind = regexp(inFileNames, '.+\.wav', 'ignorecase'); % find cell that has '.wav' or '.WAV'
@@ -44,7 +44,7 @@ for i=1:size(wavFiles, 2)
     audiowrite(fileName,wavSignal,info.SampleRate, 'BitsPerSample', info.BitsPerSample);
 end
 
-% Output normalized ppt file and delete zip file
+% Output normalized pptx file and delete zip file
 outFileNames = strrep(inFileNames, sprintf('%s\\', dir), ''); % remove dir path from fileNames
 cd(dir);
 outFileName = sprintf('%s_normalized', dir);
